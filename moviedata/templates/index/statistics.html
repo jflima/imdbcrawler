@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Statistics{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h1>The average time is {{ average_time }}</h1>
+<h1>The time list is {{ movie_duration }}</h1>
+<!-- <table>
+    <tr>
+        <th>Type</th>
+        <th>Primary Title</th>
+        <th>Original Title</th>
+        <th>Is Adult</th>
+        <th>Start Year</th>
+        <th>End Year</th>
+        <th>Runtime Minutes</th>
+        <th>Genres</th>
+    </tr>
+    {% for movie in movies %}
+    <tr>
+        <td>{{ movies[movie][0] }}</td>
+        <td>{{ movies[movie][1] }}</td>
+        <td>{{ movies[movie][2] }}</td>
+        <td>{{ movies[movie][3] }}</td>
+        <td>{% if movies[movie][4] != '\\N' %}{{ movies[movie][4] }} {% endif %}</td>
+        <td>{% if movies[movie][5] != '\\N' %}{{ movies[movie][5] }} {% endif %}</td>
+        <td>{% if movies[movie][6] != '\\N' %}{{ movies[movie][6] }} {% endif %}</td>
+        <td>{% if movies[movie][7] != '\\N' %}{{ movies[movie][7] }} {% endif %}</td>
+    </tr>
+      <h1></h1>
+
+      {% endfor %}
+  </table> -->
+{% endblock %}

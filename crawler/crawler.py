@@ -23,9 +23,12 @@ def get_tag_property(property_name, tag_name, text):
 				return match.group(1)
 	return None
 
+def get_request(url)
+	r = requests.get(url)
+    return r.text
+
 def collect_movie_files():
-    r = requests.get("https://datasets.imdbws.com/")
-    dataset_page_response_text = r.text
+    dataset_page_response_text = get_request("https://datasets.imdbws.com/")
     movie_files_links = get_tag_content('ul', dataset_page_response_text)
 
     for movie_file_link in movie_files_links:
@@ -51,7 +54,6 @@ def collect_movie_files():
 						break
 					counter += 1
 				json.dump(movies, movies_json)
-			content_file.close()
 		elif 'name.basics' in file_link:
 			names = {}
 			with open('names.json', 'w') as names_json:
@@ -59,8 +61,12 @@ def collect_movie_files():
 					name_infos = line.split('\t')
 					names[name_infos[0]] = name_infos[1:]
 				json.dump(names, names_json)
-			content_file.close()
+		elif ''
+		content_file.close()
 
+def get_director_info(director_id):
+	director_page_url = "https://www.imdb.com/name/%s/" % director_id
+	get_request(director_page_url)
 
 if __name__ == '__main__':
     collect_movie_files()
