@@ -14,6 +14,12 @@ def get_tag_content(tag_name, text):
                                    ('</%s>' % tag_name)),
                     text)]
 
+def get_tag(tag_name, text):
+    return [n.group(1) for n in 
+        re.finditer('%s(.+?)%s' % (('<%s>' % tag_name), 
+                                   ('</%s>' % tag_name)),
+                    text)]
+
 def get_tag_property(property_name, tag_name, text):
 	properties = re.search('<%s (.+?)>' % tag_name, text).group(1)
 	if properties:
@@ -66,7 +72,8 @@ def collect_movie_files():
 
 def get_director_info(director_id):
 	director_page_url = "https://www.imdb.com/name/%s/" % director_id
-	get_request(director_page_url)
+	director_page_raw_html = get_request(director_page_url)
+	for a in get_tag_content
 
 if __name__ == '__main__':
     collect_movie_files()
