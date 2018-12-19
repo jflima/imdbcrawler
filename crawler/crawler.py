@@ -111,5 +111,32 @@ def get_director_movie_ratings():
 		if 'director' in names[name][3]:
 			get_average_movie_ratings_per_director(name)
 
+def get_director_gender():
+	names = json.load("names.json")
+	for name in names.keys():	
+		search_name = names[name][0].replace(' ', '+')
+
+		# check male
+		search_url = "https://www.imdb.com/search/name?name=%s&birth_date=%s-01-01,&gender=%s" % (search_name, names[name][1], "male")
+		search_response = requests.post(search_url)
+
+		if "No results" not in search_response:
+			for a in get_tag('a', search_response):
+				if name in get_tag_property('href', 'a', a):
+					continue
+					# update director gender to MALE
+		
+		# check female
+		search_url = "https://www.imdb.com/search/name?name=%s&birth_date=%s-01-01,&gender=%s" % (search_name, names[name][1], "female")
+		search_response = requests.post(search_url)
+		
+		if "No results" not in search_response:
+			for a in get_tag('a', search_response):
+				if name in get_tag_property('href', 'a', a):
+					continue
+					# update director gender to FEMALE
+		
+
+
 if __name__ == '__main__':
     collect_movie_files()
